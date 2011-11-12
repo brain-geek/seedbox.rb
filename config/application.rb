@@ -44,5 +44,13 @@ module SeedboxRb
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.generators do |g|
+      g.template_engine :erb
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      g.integration_tool :rspec
+      g.orm :active_record
+    end
   end
 end

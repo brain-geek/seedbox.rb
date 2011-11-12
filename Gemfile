@@ -9,6 +9,10 @@ gem 'sqlite3'
 
 gem 'activeadmin'
 gem 'paperclip'
+gem "meta_search", '>= 1.1.0.pre'
+
+#gem 'unicorn'
+gem 'airbrake'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,7 +36,14 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'ffaker'
+gem 'factory_girl_rails', :require => false
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'autotest'
+  gem 'autotest-rails-pure', '4.1.2'
 end

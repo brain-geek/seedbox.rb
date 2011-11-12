@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    ZenTest (4.6.2)
     actionmailer (3.1.1)
       actionpack (= 3.1.1)
       mail (~> 2.3.0)
@@ -38,8 +39,14 @@ GEM
       activesupport (= 3.1.1)
     activesupport (3.1.1)
       multi_json (~> 1.0)
+    airbrake (3.0.5)
+      activesupport
+      builder
     ansi (1.4.1)
     arel (2.2.1)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
+    autotest-rails-pure (4.1.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cocaine (0.2.0)
@@ -54,10 +61,17 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
+    diff-lcs (1.1.3)
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    factory_girl (2.2.0)
+      activesupport
+    factory_girl_rails (1.3.0)
+      factory_girl (~> 2.2.0)
+      railties (>= 3.0.0)
     fastercsv (1.5.4)
+    ffaker (1.10.1)
     formtastic (1.2.4)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -122,6 +136,19 @@ GEM
     rdoc (3.11)
       json (~> 1.4)
     responders (0.6.4)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
+    rspec-rails (2.7.0)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      railties (~> 3.0)
+      rspec (~> 2.7.0)
     sass (3.1.10)
     sass-rails (3.1.4)
       actionpack (~> 3.1.0)
@@ -129,6 +156,7 @@ GEM
       sass (>= 3.1.4)
       sprockets (~> 2.0.0)
       tilt (~> 1.3.2)
+    shoulda (2.11.3)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -153,11 +181,19 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  airbrake
+  autotest
+  autotest-rails-pure (= 4.1.2)
   coffee-rails (~> 3.1.1)
+  factory_girl_rails
+  ffaker
   jquery-rails
+  meta_search (>= 1.1.0.pre)
   paperclip
   rails (= 3.1.1)
+  rspec-rails
   sass-rails (~> 3.1.4)
+  shoulda
   sqlite3
   turn
   uglifier (>= 1.0.3)
