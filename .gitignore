@@ -16,10 +16,9 @@ vendor/gems
 *.sublime-project
 *.lock
 !Gemfile.lock
-public/stylesheets/*.css
-public/stylesheets/**/*.css
-public/stylesheets/**/**/*.css
-.rvmrc
+public/assets
+public/system
+public/stylesheets
 test/
 config/app_config.rb
 config/unicorn.conf.rb

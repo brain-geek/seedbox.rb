@@ -27,8 +27,6 @@ gem 'ffaker'
 gem 'factory_girl_rails', :require => false
 #Gems used only for testing
 group :development, :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'autotest'

@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Parcel do
   it { should validate_presence_of(:name) }  
 
+  [:asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at].each do |a|
+    it { should have_readonly_attribute a}
+  end
+  it { should validate_attachment_presence(:asset) }
+  it { should validate_attachment_content_type(:asset).
+                allowing('application/x-bittorrent').
+                rejecting('text/plain', 'text/xml', 'image/png', 'image/gif') }
+  it { should validate_attachment_size(:asset).less_than(100.kilobytes) }
+
+
   before :all do
     @parcel = Factory :parcel
   end
