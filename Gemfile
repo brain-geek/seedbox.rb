@@ -23,9 +23,12 @@ end
 gem 'jquery-rails'
 gem 'therubyracer'
 
+gem 'bencode'
+
 gem 'ffaker'
 gem 'factory_girl_rails', :require => false
-#Gems used only for testing
+
+#Gems used only for testing/dev
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda'
