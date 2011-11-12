@@ -1,4 +1,4 @@
-class Transmission
+class Downloader::Transmission
 
   def initialize
     @config = YAML::load(IO.read(File.join(Rails.root, 'config', 'transmission.yml')))
