@@ -2,4 +2,11 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  state:
+    '0': "Stopped"
+    '1': "Checking(waiting)"
+    '2': "Checking"
+    '3': "Download(waiting)"
+    '4': "Download"
+    '5': "Seeding(waiting)"
+    '6': "Seeding"

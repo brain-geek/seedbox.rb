@@ -1,3 +1,7 @@
 h1. Seedbox.rb "!https://secure.travis-ci.org/brain-geek/seedbox.rb.png!":http://travis-ci.org/brain-geek/seedbox.rb
 
 Seedbox.rb is an attempt to create an open-source, ruby-powered seedbox with transmission as backend.
+
+h1. Dependencies
+
+- Transmission daemon >= 2.41 (PPA for ubuntu: https://launchpad.net/~transmissionbt/+archive/ppa )

@@ -4,6 +4,7 @@ ActiveAdmin.register Parcel do
 
   index do
     column :name
+    column :state do |a| I18n.t("state.#{a.state.status}") end
     default_actions
   end
 
