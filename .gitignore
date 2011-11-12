@@ -36,3 +36,4 @@ nbproject/
 .metadata/
 .project
 tmp/
+config/transmission.yml
