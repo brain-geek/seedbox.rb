@@ -1,1 +1,1 @@
-ree use 1.9.3@seedbox --create
+rvm use 1.9.3@seedbox --create
