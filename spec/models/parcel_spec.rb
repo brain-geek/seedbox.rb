@@ -15,9 +15,13 @@ describe Parcel do
                 rejecting('text/plain', 'text/xml', 'image/png', 'image/gif') }
   it { should validate_attachment_size(:asset).less_than(100.kilobytes) }
 
-
   before :all do
     @parcel = Factory :parcel
+  end
+
+  after :all do
+    # clean up
+    Downloader::Transmission.remove 'c48de387a47667d741b6e5845163167f893f91aa'
   end
 
   describe :start do
@@ -38,11 +42,11 @@ describe Parcel do
 
   describe :state do
     it "should raise if no torrents found" do
-      parcel = Factory.build :parcel, :torrent_id => 'non-existant!'
+      parcel = Factory.build :parcel, :torrent_id => 'non-existent!'
       lambda { parcel.state }.should raise_error
 
       parcel = Factory :parcel
-      parcel.torrent_id = 'non-existant!'
+      parcel.torrent_id = 'non-existent!'
       lambda { parcel.state }.should raise_error
     end
   end
@@ -64,5 +68,4 @@ describe Parcel do
       lambda { parcel.state }.should raise_error
     end
   end
-
 end
