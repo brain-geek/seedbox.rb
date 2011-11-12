@@ -13,6 +13,14 @@ class Parcel < ActiveRecord::Base
     Downloader::Transmission.state(torrent_id)
   end
 
+  def stop
+    Downloader::Transmission.stop(torrent_id)
+  end
+
+  def start
+    Downloader::Transmission.start(torrent_id)
+  end
+
   before_create :create_torrent_before_save
 
   private

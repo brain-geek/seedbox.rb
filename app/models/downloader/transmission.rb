@@ -42,13 +42,19 @@
       end
     end
 
-    def start(*args)
+    def start(torrent_id)
+      return false unless torrent_id
+      send 'torrent-start', :ids => [torrent_id]
     end
 
-    def stop(*args)
+    def stop(torrent_id)
+      return false unless torrent_id
+      send 'torrent-stop', :ids => [torrent_id]
     end
 
     def delete(*args)
+      return false unless torrent_id
+      send 'torrent-remove', :ids => [torrent_id], "delete-local-data" => true
     end
 
     private

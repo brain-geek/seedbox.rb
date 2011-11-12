@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Parcel do
-  it { should validate_presence_of(:name) }  
+  it { should validate_presence_of(:name) }
 
   [:asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at].each do |a|
     it { should have_readonly_attribute a}
@@ -21,16 +21,18 @@ describe Parcel do
   end
 
   describe :start do
-    pending 'should successfully start the torrent' do
+    it 'should successfully start the torrent' do
       @parcel.start
-      [1,2,3,4].should_include @parcel.torrent.state.to_i
+      sleep 1
+      @parcel.state.status.should_not == nil
     end
   end
 
   describe :stop do
-    pending 'should successfully stop the torrent' do
+    it 'should successfully stop the torrent' do
       @parcel.stop
-      @parcel.torrent.state.to_i.should == 0
+      sleep 1
+      @parcel.state.status.to_i.should == 0
     end
   end
 
