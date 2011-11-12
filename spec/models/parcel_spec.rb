@@ -56,12 +56,12 @@ describe Parcel do
   end
 
   describe :delete do
-    pending 'Resque task should delete torrents with no matching parcels' do
+    it 'Resque task should delete torrents with no matching parcels' do
       parcel = Factory :parcel
 
-      parcel.torrent.should_not be_nil
-      parcel.delete
-      parcel.torrent.should be_nil
+      parcel.state.should_not be_nil
+      parcel.remove
+      lambda { parcel.state }.should raise_error
     end
   end
 
