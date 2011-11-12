@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Parcel do
+  it { should validate_presence_of(:name) }  
+
   before :all do
     @parcel = Factory :parcel
   end
