@@ -13,4 +13,10 @@ namespace :install do
   task :bundler_pre do
     `gem install bundler --pre`
   end
+
+  desc "Init default (example) installation"
+  task :config_init do
+    `cp #{File.join(Rails.root, 'config', 'transmission.example.yml')} #{File.join(Rails.root, 'config', 'transmission.yml')}`
+    `cp #{File.join(Rails.root, 'config', 'database.example.yml')} #{File.join(Rails.root, 'config', 'database.yml')}`
+  end
 end
