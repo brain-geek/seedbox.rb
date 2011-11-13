@@ -33,15 +33,25 @@ ActiveAdmin.register Parcel do
 
   member_action :change_state do
     case params[:state]
+
     when 'stop'
       resource.stop
     when 'start'
       resource.start
     end
 
-
-
     redirect_to :action => :index
   end
 
+  action_item :only => :index do
+    render 'common/create_button'
+  end
+
+  controller do
+    def create
+      create! do |format|
+        format.html { redirect_to parcels_url }
+      end
+    end    
+  end
 end

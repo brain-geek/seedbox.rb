@@ -20,6 +20,14 @@
         @data['arguments']['torrents'].first['status']
       end
 
+      def torrent_name
+        @data["arguments"]["torrents"].first["name"]
+      end
+
+      def percent_done
+        @data["arguments"]["torrents"].first["percentDone"]
+      end
+
       #delme after development
       attr_accessor :data
     end

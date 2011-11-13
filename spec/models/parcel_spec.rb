@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Parcel do
-  it { should validate_presence_of(:name) }
-
   [:asset, :asset_file_name, :asset_content_type, :asset_file_size, :asset_updated_at].each do |a|
     it { should have_readonly_attribute a}
   end
@@ -56,6 +54,20 @@ describe Parcel do
       parcel = Factory.build :parcel
       parcel.save!
       parcel.torrent_id.should == 'c48de387a47667d741b6e5845163167f893f91aa'
+    end
+  end
+
+  describe :name do
+    it "should get name from torrent, if 'name' is blank" do
+      parcel = Factory :parcel, :name => ''
+      parcel.name.should == 'debian-6.0.3-i386-businesscard.iso'
+    end
+    
+    it "should not allow setting name to blank after creation" do
+      parcel = Factory :parcel
+      parcel.valid?.should be_true
+      parcel.name = ''
+      parcel.valid?.should be_false
     end
   end
 

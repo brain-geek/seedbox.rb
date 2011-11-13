@@ -1,5 +1,5 @@
 class Parcel < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :unless => Proc.new{ new_record? }
 
   attr_readonly :torrent_id
 
@@ -25,8 +25,9 @@ class Parcel < ActiveRecord::Base
     before_create :create_torrent
 
     def create_torrent
-      self.torrent_id = Downloader::Transmission.create(asset.to_file) if self.new_record?
+      self.torrent_id = Downloader::Transmission.create(asset.to_file)
       #raise "Not unique" if Parcel.find_by_torrent_id(self.torrent_id)
+      self.name = self.state.torrent_name if self.name.blank?
     end
 
     before_destroy :remove_torrent
