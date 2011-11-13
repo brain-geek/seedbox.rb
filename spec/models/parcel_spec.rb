@@ -13,27 +13,30 @@ describe Parcel do
                 rejecting('text/plain', 'text/xml', 'image/png', 'image/gif') }
   it { should validate_attachment_size(:asset).less_than(100.kilobytes) }
 
-  before :all do
+  before :each do
     @parcel = Factory :parcel
   end
 
-  after :all do
+  after :each do
     # clean up
-    Downloader::Transmission.remove 'c48de387a47667d741b6e5845163167f893f91aa'
+    Parcel.all.each &:destroy
   end
 
   describe :start do
     it 'should successfully start the torrent' do
       @parcel.start
-      sleep 1
+      sleep 0.3
       [1,2,3,4].include?(@parcel.state.status.to_i).should == true
     end
   end
 
   describe :stop do
     it 'should successfully stop the torrent' do
+      # require 'ruby-debug'
+      # debugger
+      sleep 0.3
       @parcel.stop
-      sleep 1
+      sleep 0.3
       @parcel.state.status.to_i.should == 0
     end
   end
@@ -53,14 +56,16 @@ describe Parcel do
     it 'should be created on saving' do
       parcel = Factory.build :parcel
       parcel.save!
-      parcel.torrent_id.should == 'c48de387a47667d741b6e5845163167f893f91aa'
+
+      parcel.torrent_id.should_not be_nil
     end
   end
 
   describe :name do
     it "should get name from torrent, if 'name' is blank" do
       parcel = Factory :parcel, :name => ''
-      parcel.name.should == 'debian-6.0.3-i386-businesscard.iso'
+
+      parcel.name.should == parcel.state.torrent_name
     end
     
     it "should not allow setting name to blank after creation" do
