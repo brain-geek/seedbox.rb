@@ -21,6 +21,25 @@ class Parcel < ActiveRecord::Base
     Downloader::Transmission.start(torrent_id)
   end
 
+  def self.get_all_by_states(*status_ids)
+    data = Downloader::Transmission.get_all_states
+    data = JSON.parse(data)["arguments"]["torrents"].map{|t| t["hashString"] if status_ids.include? t["status"].to_i}.compact
+
+    where('torrent_id IN (?)', data)
+  end
+
+  def self.downloading
+    get_all_by_states 1,2,3,4
+  end
+
+  def self.seeding
+    get_all_by_states 5,6
+  end
+
+  def self.paused
+    get_all_by_states 0
+  end
+
   private
     before_create :create_torrent
 

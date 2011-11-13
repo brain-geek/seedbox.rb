@@ -2,7 +2,7 @@
 
   module Downloader::Transmission
     FIELDS = ["error","errorString","eta","id","isFinished","leftUntilDone","name","peersGettingFromUs","peersSendingToUs","rateDownload",
-        "rateUpload","sizeWhenDone","status","uploadRatio",'files', 'fileStats', 'percentDone', 'hashString']
+        "rateUpload","sizeWhenDone","status","uploadRatio",'files', 'fileStats', 'percentDone', 'hashString', 'uploadedEver', 'downloadedEver']
 
     class StateResponse
       def initialize(text)
@@ -27,6 +27,26 @@
       def percent_done
         @data["arguments"]["torrents"].first["percentDone"]
       end
+
+      def download_speed
+        @data["arguments"]["torrents"].first["rateDownload"]
+      end
+
+      def upload_speed
+        @data["arguments"]["torrents"].first["rateUpload"]
+      end
+
+      def download_speed
+        @data["arguments"]["torrents"].first["rateDownload"]
+      end
+
+      def downloaded_data
+        @data["arguments"]["torrents"].first["downloadedEver"]
+      end
+
+      def uploaded_data
+        @data["arguments"]["torrents"].first["uploadedEver"]
+      end      
 
       #delme after development
       attr_accessor :data
@@ -65,11 +85,15 @@
       send 'torrent-remove', :ids => [torrent_id], "delete-local-data" => true
     end
 
+    def get_all_states
+      get_torrents_by(:fields => ['hashString', 'status'])
+    end
+
     private
 
     def get_torrents_by(*args)
       options = args.extract_options!
-      options[:fields] = FIELDS
+      options[:fields] = FIELDS unless options.has_key? :fields
       send('torrent-get', options)
     end
 

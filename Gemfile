@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'therubyracer'
+gem 'json'
 
 gem 'bencode'
 
@@ -32,8 +33,6 @@ gem 'factory_girl_rails', :require => false
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda'
-  gem 'autotest'
-  gem 'autotest-rails-pure', '4.1.2'
 end
 
 group :development do
@@ -47,6 +46,9 @@ group :development do
   gem 'ruby-debug-base19', '~>0.11.26'
   gem 'linecache19', '~>0.5.13'
   gem 'ruby-debug19', :require => false
+
+  gem 'autotest'
+  gem 'autotest-rails-pure', '4.1.2'  
 end
 
 
