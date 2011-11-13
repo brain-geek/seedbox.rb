@@ -6,7 +6,7 @@ namespace :install do
     puts '* Updating deb cache'
     `sudo apt-get update`
     puts '* installing transmission-daemon'
-    `sudo apt-get install transmission-daemon`
+    `sudo apt-get install transmission-daemon -y`
   end
 
   desc "Install bundler pre to speed up bundle install"
