@@ -12,41 +12,20 @@
         #TODO: add checks
       end
 
-      def eta
-        @data['arguments']['torrents'].first['eta']
-      end
+      fields = 
+        {
+          :torrent_name => :name, :percent_done => :percentDone, 
+          :download_speed => :rateDownload, :upload_speed => :rateUpload,
+          :downloaded_data => :downloadedEver, :uploaded_data => :uploadedEver
+        }
 
-      def status
-        @data['arguments']['torrents'].first['status']
-      end
+      [:eta, :status].each { |q| fields[q] = q }
 
-      def torrent_name
-        @data["arguments"]["torrents"].first["name"]
+      fields.each do |mname, var|
+        define_method(mname) do
+          @data['arguments']['torrents'].first[var.to_s]
+        end
       end
-
-      def percent_done
-        @data["arguments"]["torrents"].first["percentDone"]
-      end
-
-      def download_speed
-        @data["arguments"]["torrents"].first["rateDownload"]
-      end
-
-      def upload_speed
-        @data["arguments"]["torrents"].first["rateUpload"]
-      end
-
-      def download_speed
-        @data["arguments"]["torrents"].first["rateDownload"]
-      end
-
-      def downloaded_data
-        @data["arguments"]["torrents"].first["downloadedEver"]
-      end
-
-      def uploaded_data
-        @data["arguments"]["torrents"].first["uploadedEver"]
-      end      
 
       #delme after development
       attr_accessor :data
