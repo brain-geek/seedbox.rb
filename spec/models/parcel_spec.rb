@@ -64,7 +64,10 @@ describe Parcel do
       parcel = Factory :parcel
 
       parcel.state.should_not be_nil
-      parcel.remove
+
+      p = Parcel.find(parcel.id)
+      p.destroy
+
       lambda { parcel.state }.should raise_error
     end
   end

@@ -5,7 +5,7 @@ ActiveAdmin.register Parcel do
   index do
     column :name
     column :state do |a| I18n.t("state.#{a.state.status}") end
-    column :eta do |a| (a.state.eta.seconds > 0) ? time_ago_in_words(Time.zone.now - a.state.eta.seconds) : '-' end
+    column :eta do |a| (a.state.eta.seconds > 0) ? time_ago_in_words(Time.zone.now - a.state.eta.seconds, true) : '-' end
     column '' do |resource| 
       if resource.state.status.to_i == 0
         link_to I18n.t('state.start'), change_state_parcel_url(resource, :state => :start), :class => "member_link"

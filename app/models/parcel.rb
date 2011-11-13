@@ -21,15 +21,16 @@ class Parcel < ActiveRecord::Base
     Downloader::Transmission.start(torrent_id)
   end
 
-  def remove
-    Downloader::Transmission.remove(torrent_id)
-  end
-
-  before_create :create_torrent_before_save
-
   private
-    def create_torrent_before_save
+    before_create :create_torrent
+
+    def create_torrent
       self.torrent_id = Downloader::Transmission.create(asset.to_file) if self.new_record?
       #raise "Not unique" if Parcel.find_by_torrent_id(self.torrent_id)
+    end
+
+    before_destroy :remove_torrent
+    def remove_torrent
+      Downloader::Transmission.remove(torrent_id)
     end
 end
