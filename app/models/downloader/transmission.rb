@@ -1,5 +1,3 @@
-  require 'ostruct'
-
   module Downloader::Transmission
     FIELDS = ["error","errorString","eta","id","isFinished","leftUntilDone","name","peersGettingFromUs","peersSendingToUs","rateDownload",
         "rateUpload","sizeWhenDone","status","uploadRatio",'files', 'fileStats', 'percentDone', 'hashString', 'uploadedEver', 'downloadedEver']
