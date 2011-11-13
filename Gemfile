@@ -34,7 +34,9 @@ group :development, :test do
   gem 'shoulda'
   gem 'autotest'
   gem 'autotest-rails-pure', '4.1.2'
+end
 
+group :development do
   #ruby-debug19 has bugs with 1.9.3, fixed in rubyforge release, but release is not present in rubygems
   #Installing:
   #   wget http://rubyforge.org/frs/download.php/75414/linecache19-0.5.13.gem

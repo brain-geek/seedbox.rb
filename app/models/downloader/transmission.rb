@@ -52,7 +52,7 @@
       send 'torrent-stop', :ids => [torrent_id]
     end
 
-    def delete(*args)
+    def remove(torrent_id)
       return false unless torrent_id
       send 'torrent-remove', :ids => [torrent_id], "delete-local-data" => true
     end

@@ -21,6 +21,10 @@ class Parcel < ActiveRecord::Base
     Downloader::Transmission.start(torrent_id)
   end
 
+  def remove
+    Downloader::Transmission.remove(torrent_id)
+  end
+
   before_create :create_torrent_before_save
 
   private
