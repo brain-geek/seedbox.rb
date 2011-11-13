@@ -10,3 +10,5 @@ en:
     '4': "Download"
     '5': "Seeding(waiting)"
     '6': "Seeding"
+    'stop': 'Stop'
+    'start': 'Start'
