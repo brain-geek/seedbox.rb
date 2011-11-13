@@ -26,7 +26,7 @@ describe Parcel do
     it 'should successfully start the torrent' do
       @parcel.start
       sleep 1
-      @parcel.state.status.should_not == nil
+      [1,2,3,4].include?(@parcel.state.status.to_i).should == true
     end
   end
 
